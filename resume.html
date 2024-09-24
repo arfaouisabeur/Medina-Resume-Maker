@@ -36,7 +36,7 @@
                                 <div class = "cols-3">
                                     <div class = "form-elem">
                                         <label for = "" class = "form-label">First Name</label>
-                                        <input name = "firstname" type = "text" class = "form-control firstname" id = "" onchange="generateCV()" placeholder="e.g. John">
+                                        <input name = "firstname" type = "text" class = "form-control firstname" id = "" onchange="generateCV()" placeholder="e.g. John" required>
                                         <span class="form-text"></span>
                                     </div>
                                     <div class = "form-elem">
@@ -46,7 +46,7 @@
                                     </div>
                                     <div class = "form-elem">
                                         <label for = "" class = "form-label">Last Name</label>
-                                        <input name = "lastname" type = "text" class = "form-control lastname" id = "" onchange="generateCV()" placeholder="e.g. Doe">
+                                        <input name = "lastname" type = "text" class = "form-control lastname" id = "" onchange="generateCV()" placeholder="e.g. Doe" required>
                                         <span class="form-text"></span>
                                     </div>
                                 </div>
@@ -54,18 +54,18 @@
                                 <div class="cols-3">
                                     <div class = "form-elem">
                                         <label for = "" class = "form-label">Email</label>
-                                        <input name = "email" type = "text" class = "form-control email" id = "" onchange="generateCV()" placeholder="e.g. johndoe@gmail.com">
+                                        <input name = "email" type = "text" class = "form-control email" id = "" onchange="generateCV()" placeholder="e.g. johndoe@gmail.com" required>
                                         <span class="form-text"></span>
                                     </div>
                                     <div class = "form-elem">
                                         <label for = "" class = "form-label">Designation</label>
-                                        <input name = "designation" type = "text" class = "form-control designation" id = "designation" onchange="generateCV()" placeholder="Computer Science engineer">
+                                        <input name = "designation" type = "text" class = "form-control designation" id = "designation" onchange="generateCV()" placeholder="Computer Science engineer" required>
                                         <span class="form-text"></span>
                                     </div>
                                     
                                     <div class = "form-elem">
                                         <label for = "" class = "form-label">Address</label>
-                                        <input name = "address" type = "text" class = "form-control address" id = "" onchange="generateCV()" placeholder="e.g. Lake Street-23">
+                                        <input name = "address" type = "text" class = "form-control address" id = "" onchange="generateCV()" placeholder="e.g. Lake Street-23" required>
                                         <span class="form-text"></span>
                                     </div>
                                 </div>
@@ -74,7 +74,7 @@
                                     
                                     <div class = "form-elem">
                                         <label for = "" class = "form-label">Phone No:</label>
-                                        <input name = "phoneno" type = "text" class = "form-control phoneno" id = "" onchange="generateCV()" placeholder="e.g. 456-768-798, 567.654.002">
+                                        <input name = "phoneno" type = "text" class = "form-control phoneno" id = "" onchange="generateCV()" placeholder="e.g. 456-768-798, 567.654.002" required>
                                         <span class="form-text"></span>
                                     </div>
                                     <div class = "form-elem">
@@ -93,7 +93,7 @@
 
                         <div class="cv-form-blk">
                             <div class = "cv-form-row-title">
-                                <h3>achievements</h3>
+                                <h3>Achievements</h3>
                             </div>
 
                             <div class = "row-separator repeater">
@@ -103,12 +103,12 @@
                                             <div class = "cols-2">
                                                 <div class = "form-elem">
                                                     <label for = "" class = "form-label">Title</label>
-                                                    <input name = "achieve_title" type = "text" class = "form-control achieve_title" id = "" onchange="generateCV()" placeholder="e.g. johndoe@gmail.com">
+                                                    <input name = "achieve_title" type = "text" class = "form-control achieve_title" id = "" onchange="generateCV()" placeholder="Hackathon Winner">
                                                     <span class="form-text"></span>
                                                 </div>
                                                 <div class = "form-elem">
                                                     <label for = "" class = "form-label">Description</label>
-                                                    <input name = "achieve_description" type = "text" class = "form-control achieve_description" id = "" onchange="generateCV()" placeholder="e.g. johndoe@gmail.com">
+                                                    <input name = "achieve_description" type = "text" class = "form-control achieve_description" id = "" onchange="generateCV()" placeholder="Theme and what you do in this Achievements">
                                                     <span class="form-text"></span>
                                                 </div>
                                             </div>
@@ -122,7 +122,7 @@
 
                         <div class="cv-form-blk">
                             <div class = "cv-form-row-title">
-                                <h3>experience</h3>
+                                <h3>Experience</h3>
                             </div>
 
                             <div class = "row-separator repeater">
@@ -238,17 +238,17 @@
                                             <div class = "cols-3">
                                                 <div class = "form-elem">
                                                     <label for = "" class = "form-label">Project Name</label>
-                                                    <input name = "proj_title" type = "text" class = "form-control proj_title" id = "" onchange="generateCV()">
+                                                    <input name = "proj_title" type = "text" class = "form-control proj_title" id = "" onchange="generateCV()" placeholder="Dashboard Web app">
                                                     <span class="form-text"></span>
                                                 </div>
                                                 <div class = "form-elem">
                                                     <label for = "" class = "form-label">Project link</label>
-                                                    <input name = "proj_link" type = "text" class = "form-control proj_link" id = "" onchange="generateCV()">
+                                                    <input name = "proj_link" type = "text" class = "form-control proj_link" id = "" onchange="generateCV()" placeholder="https:/test.com">
                                                     <span class="form-text"></span>
                                                 </div>
                                                 <div class = "form-elem">
                                                     <label for = "" class = "form-label">Description</label>
-                                                    <input name = "proj_description" type = "text" class = "form-control proj_description" id = "" onchange="generateCV()">
+                                                    <input name = "proj_description" type = "text" class = "form-control proj_description" id = "" onchange="generateCV()" placeholder="this app manage all web managment">
                                                     <span class="form-text"></span>
                                                 </div>
                                             </div>
@@ -274,7 +274,7 @@
                                             <div class = "cols-2">
                                                 <div class = "form-elem">
                                                 <label for = "" class = "form-label">Skill Theme</label>
-                                                <input name = "skillt" type = "text" class = "form-control skillt" id = "" onchange="generateCV()">
+                                                <input name = "skillt" type = "text" class = "form-control skillt" id = "" onchange="generateCV()" placeholder="Web Development">
 
                                                 <span class="form-text"></span>
 
@@ -282,7 +282,7 @@
                                             <div class = "form-elem">
 
                                                 <label for = "" class = "form-label">Skills</label>
-                                                <input name = "skilld" type = "text" class = "form-control skilld" id = "" onchange="generateCV()">
+                                                <input name = "skilld" type = "text" class = "form-control skilld" id = "" onchange="generateCV()" placeholder="HTML , CSS , Javascript">
 
                                                 <span class="form-text"></span>
                                             </div>
@@ -313,7 +313,7 @@
                                             <div class = "cols-2">
                                                 <div class = "form-elem">
                                                 <label for = "" class = "form-label">Language</label>
-                                                <input name = "languaget" type = "text" class = "form-control languaget" id = "" onchange="generateCV()">
+                                                <input name = "languaget" type = "text" class = "form-control languaget" id = "" onchange="generateCV()" placeholder="English">
 
                                                 <span class="form-text"></span>
 
