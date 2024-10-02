@@ -1111,3 +1111,7 @@ textarea {
     align-content: center;
 }
 
+#present_checkboxex,#present_checkboxed,#present_checkboxc{
+    scale: 1.5;
+}
+
