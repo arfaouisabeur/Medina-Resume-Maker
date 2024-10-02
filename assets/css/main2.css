@@ -1102,3 +1102,12 @@ textarea {
         font-size: 1em;
     }
 }
+.fs{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: nowrap;
+    align-content: center;
+}
+

@@ -3,6 +3,34 @@ const strRegex =  /^[a-zA-Z\s]*$/; // containing only letters
 const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 const digitRegex = /^\d+$/;
 
+function toggleEndDatea() {
+    const endDateInput = document.getElementById('exp_end_date');
+    const presentCheckbox = document.getElementById('present_checkboxex');
+    if (presentCheckbox.checked) {
+        endDateInput.disabled = true;   
+    } else {
+        endDateInput.disabled = false;  
+    }
+}
+function toggleEndDateb() {
+    const endDateInput = document.getElementById('edu_graduation_date');
+    const presentCheckbox = document.getElementById('present_checkboxed');
+    if (presentCheckbox.checked) {
+        endDateInput.disabled = true;  
+    } else {
+        endDateInput.disabled = false;   
+    }
+}
+function toggleEndDatec() {
+    const endDateInput = document.getElementById('com_end_date');
+    const presentCheckbox = document.getElementById('present_checkboxc');
+    if (presentCheckbox.checked) {
+        endDateInput.disabled = true; 
+    } else {
+        endDateInput.disabled = false;  
+    }
+}
+
 const mainForm = document.getElementById('cv-form');
 const validType = {
     TEXT: 'text',
@@ -37,9 +65,9 @@ let nameDsp = document.getElementById('fullname_dsp'),
     educationsDsp = document.getElementById('educations_dsp'),
     experiencesDsp = document.getElementById('experiences_dsp');
     languagesDsp= document.getElementById('languages_dsp');
-// first value is for the attributes and     second one passes the nodelists
-    gitDsp.innerHTML=""
-    linklDsp.innerHTML=""
+    comlDsp=document.getElementById("community_dsp")
+    gitDsp.innerHTML="";
+    linklDsp.innerHTML="";
 const fetchValues = (attrs, ...nodeLists) => {
     let elemsAttrsCount = nodeLists.length;
     let elemsDataCount = nodeLists[0].length;
@@ -72,6 +100,15 @@ const getUserInputs = () => {
     expStartDateElem = document.querySelectorAll('.exp_start_date'),
     expEndDateElem = document.querySelectorAll('.exp_end_date'),
     expDescriptionElem = document.querySelectorAll('.exp_description');
+
+    //Community Life
+    let comTitleElem = document.querySelectorAll('.com_title'),
+    comOrganizationElem = document.querySelectorAll('.com_organization'),
+    comLocationElem = document.querySelectorAll('.com_location'),
+    comStartDateElem = document.querySelectorAll('.com_start_date'),
+    comEndDateElem = document.querySelectorAll('.com_end_date'),
+    comDescriptionElem = document.querySelectorAll('.com_description');
+
 
     // education
     let eduSchoolElem = document.querySelectorAll('.edu_school'),
@@ -122,6 +159,13 @@ const getUserInputs = () => {
     skillD.forEach(item => item.addEventListener('change', (e) => validateFormData(e.target, validType.ANY, 'Description')));
     languageT.forEach(item => item.addEventListener('change', (e) => validateFormData(e.target, validType.ANY, 'Title')));
     languageL.forEach(item => item.addEventListener('change', (e) => validateFormData(e.target, validType.ANY, 'Description')));
+    comTitleElem.forEach(item => item.addEventListener('change', (e) => validateFormData(e.target, validType.ANY, 'Title')));
+    comOrganizationElem.forEach(item => item.addEventListener('change', (e) => validateFormData(e.target, validType.ANY, 'Organization')));
+    comLocationElem.forEach(item => item.addEventListener('change', (e) => validateFormData(e.target, validType.ANY, "Location")));
+    comStartDateElem.forEach(item => item.addEventListener('change', (e) => validateFormData(e.target, validType.ANY, 'End Date')));
+    comEndDateElem.forEach(item => item.addEventListener('change', (e) => validateFormData(e.target, validType.ANY, 'End Date')));
+    comDescriptionElem.forEach(item => item.addEventListener('change', (e) => validateFormData(e.target, validType.ANY, 'Description')));
+    
 
 
 
@@ -137,6 +181,7 @@ const getUserInputs = () => {
         linkl:linkl.value,
         achievements: fetchValues(['achieve_title', 'achieve_description'], achievementsTitleElem, achievementsDescriptionElem),
         experiences: fetchValues(['exp_title', 'exp_organization', 'exp_location', 'exp_start_date', 'exp_end_date', 'exp_description'], expTitleElem, expOrganizationElem, expLocationElem, expStartDateElem, expEndDateElem, expDescriptionElem),
+        communitys: fetchValues(['com_title', 'com_organization', 'com_location', 'com_start_date', 'com_end_date', 'com_description'], comTitleElem, comOrganizationElem, comLocationElem, comStartDateElem, comEndDateElem, comDescriptionElem),
         educations: fetchValues(['edu_school', 'edu_degree', 'edu_city', 'edu_start_date', 'edu_graduation_date', 'edu_description'], eduSchoolElem, eduDegreeElem, eduCityElem, eduStartDateElem, eduGraduationDateElem, eduDescriptionElem),
         projects: fetchValues(['proj_title', 'proj_link', 'proj_description'], projTitleElem, projLinkElem, projDescriptionElem),
         skills: fetchValues(['skillt','skilld'], skillT,skillD),
@@ -206,17 +251,64 @@ const showExperienceData = (experiences, container) => {
     experiences.forEach(exp => {
         let expItem = document.createElement('div');
         expItem.classList.add('experience-item');
+        expItem.innerHTML=`<h2 class="section-title"> Professional Experience</h2>`
 
         let expTitleAndOrganization = document.createElement('h3');
         expTitleAndOrganization.innerHTML = `${exp.exp_title || ""} - ${exp.exp_organization || ""}`;
         expTitleAndOrganization.classList.add('exp-title-organization');
 
         let expDatesAndLocation = document.createElement('p');
-        expDatesAndLocation.innerHTML = `<strong>${formatDate(exp.exp_start_date)} – ${formatDate(exp.exp_end_date)} | ${exp.exp_location || ""}</strong>`;
+        if(document.getElementById('present_checkboxex').checked){
+            expDatesAndLocation.innerHTML = `<strong>${formatDate(exp.exp_start_date)} – Present | ${exp.exp_location || ""}</strong>`;
+
+        }
+        else{
+            expDatesAndLocation.innerHTML = `<strong>${formatDate(exp.exp_start_date)} – ${formatDate(exp.exp_end_date)} | ${exp.exp_location || ""}</strong>`;
+        }
         expDatesAndLocation.classList.add('exp-dates-location');
 
         let expDescription = document.createElement('span');
         expDescription.innerHTML = exp.exp_description || "";
+        expDescription.classList.add('desi');
+
+        expItem.appendChild(expTitleAndOrganization);
+        expItem.appendChild(expDatesAndLocation);
+        expItem.appendChild(expDescription);
+
+        container.appendChild(expItem);
+    });
+};
+
+const showComData = (communitys, container) => {
+    // Check if the experiences array is empty or contains only invalid experiences
+    if (!communitys || communitys.length === 0 || communitys.every(exp => !exp.com_title.trim() && !exp.com_organization.trim())) {
+        container.innerHTML = ""; // Clear the container if no valid experiences
+        return;
+    }
+
+    container.innerHTML = ""; // Clear the container first
+
+    communitys.forEach(exp => {
+        let expItem = document.createElement('div');
+        expItem.classList.add('experience-item');
+        expItem.innerHTML=`<h2 class="section-title">Community Life</h2>`
+
+        let expTitleAndOrganization = document.createElement('h3');
+        expTitleAndOrganization.innerHTML = `${exp.com_title || ""} - ${exp.com_organization || ""}`;
+        expTitleAndOrganization.classList.add('exp-title-organization');
+
+        let expDatesAndLocation = document.createElement('p');
+        if(document.getElementById('present_checkboxc').checked){
+            expDatesAndLocation.innerHTML = `<strong>${formatDate(exp.com_start_date)} – Present} | ${exp.com_location || ""}</strong>`;
+
+        }
+        else{
+            expDatesAndLocation.innerHTML = `<strong>${formatDate(exp.com_start_date)} – ${formatDate(exp.com_end_date)} | ${exp.com_location || ""}</strong>`;
+        }
+        expDatesAndLocation.classList.add('exp-dates-location');
+
+        let expDescription = document.createElement('span');
+        expDescription.innerHTML = exp.com_description || "";
         expDescription.classList.add('desi');
 
         expItem.appendChild(expTitleAndOrganization);
@@ -239,6 +331,8 @@ const showAchiData = (achievements, container) => {
     achievements.forEach(achi => {
         let achiItem = document.createElement("div");
         achiItem.classList.add("achievement-item");
+        achiItem.innerHTML=`<h2 class="section-title"> Achievements</h2>
+`
 
         let achiTitle = document.createElement("h3");
         achiTitle.innerHTML = achi.achieve_title || "";
@@ -267,6 +361,8 @@ const showPorData = (projects, container) => {
     projects.forEach(pro => {
         let proItem = document.createElement('div');
         proItem.classList.add('pro-item');
+        proItem.innerHTML=`<h2 class="section-title"> Academic Projects</h2>
+`
 
         let proT = document.createElement('h3');
         proT.innerHTML = `${pro.proj_title || ""}`;
@@ -300,13 +396,21 @@ const showEducData = (educations, container) => {
     educations.forEach(educ => {
         let educItem = document.createElement('div');
         educItem.classList.add('education-item');
+        educItem.innerHTML=`<h2 class="section-title"> Education and Qualifications</h2>
+`
 
         let educTitleAndSchool = document.createElement('h3');
         educTitleAndSchool.innerHTML = `${educ.edu_degree || ""} - ${educ.edu_school || ""}`;
         educTitleAndSchool.classList.add('edu-title-school');
 
         let educDatesAndCity = document.createElement('p');
-        educDatesAndCity.innerHTML = `<strong>${formatDate(educ.edu_start_date)} – ${formatDate(educ.edu_graduation_date)} | ${educ.edu_city || ""}</strong>`;
+        if(document.getElementById('present_checkboxed').checked){
+            educDatesAndCity.innerHTML = `<strong>${formatDate(educ.edu_start_date)} – Present | ${educ.edu_city || ""}</strong>`;
+
+        }
+        else{
+            educDatesAndCity.innerHTML = `<strong>${formatDate(educ.edu_start_date)} – ${formatDate(educ.edu_graduation_date)} | ${educ.edu_city || ""}</strong>`;
+        }
         educDatesAndCity.classList.add('edu-dates-city');
 
         let educDescription = document.createElement('span');
@@ -333,6 +437,8 @@ const showLang = (languages, container) => {
     languages.forEach(lang => {
         let langItem = document.createElement("div");
         langItem.classList.add("langItem");
+        langItem.innerHTML=`<h2 class="section-title"> Languages</h2>
+`
 
         let langcont = document.createElement('span');
         langcont.innerHTML = `<strong>${lang.languaget}:</strong>  ${lang.languagel || ""}`;
@@ -357,6 +463,7 @@ const showSkillData = (skills, container) => {
         if (skil.skillt.trim() || skil.skilld.trim()) {
             let skillItem = document.createElement('div');
             skillItem.classList.add("skillItem");
+            skillItem.innerHTML=`<h2 class="section-title"> Technical Skills</h2>`
 
             let skillcont = document.createElement('span');
             skillcont.innerHTML = `<strong>${skil.skillt}:</strong>  ${skil.skilld}`;
@@ -381,6 +488,7 @@ const displayCV = (userData) => {
     gitDsp.innerHTML = !userData.git ? "" : `<a href="${userData.git}" target="_blank" rel="noopener noreferrer">GitHub</a>`;
     linklDsp.innerHTML = !userData.linkl ? "" : `<a href="${userData.linkl}" target="_blank" rel="noopener noreferrer">Linkedin</a>`;
     showExperienceData(userData.experiences, experiencesDsp) || "";
+    showComData(userData.communitys, comlDsp) || "";
     showEducData(userData.educations, educationsDsp) || "";
     showAchiData(userData.achievements, achievementsDsp) || "";
     showPorData(userData.projects, projectsDsp) || "";
