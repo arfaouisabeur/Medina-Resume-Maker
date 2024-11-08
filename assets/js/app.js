@@ -246,12 +246,12 @@ const showExperienceData = (experiences, container) => {
         return;
     }
 
-    container.innerHTML = ""; // Clear the container first
+    container.innerHTML=`<h2 class="section-title"> Professional Experience</h2>`; // Clear the container first
 
     experiences.forEach(exp => {
         let expItem = document.createElement('div');
         expItem.classList.add('experience-item');
-        expItem.innerHTML=`<h2 class="section-title"> Professional Experience</h2>`
+        
 
         let expTitleAndOrganization = document.createElement('h3');
         expTitleAndOrganization.innerHTML = `${exp.exp_title || ""} - ${exp.exp_organization || ""}`;
@@ -282,17 +282,16 @@ const showExperienceData = (experiences, container) => {
 const showComData = (communitys, container) => {
     // Check if the experiences array is empty or contains only invalid experiences
     if (!communitys || communitys.length === 0 || communitys.every(exp => !exp.com_title.trim() && !exp.com_organization.trim())) {
-        container.innerHTML = ""; // Clear the container if no valid experiences
+        container.innerHTML =""; // Clear the container if no valid experiences
         return;
     }
 
-    container.innerHTML = ""; // Clear the container first
+    container.innerHTML = `<h2 class="section-title">Community Life</h2>`; // Clear the container first
 
     communitys.forEach(exp => {
         let expItem = document.createElement('div');
         expItem.classList.add('experience-item');
-        expItem.innerHTML=`<h2 class="section-title">Community Life</h2>`
-
+  
         let expTitleAndOrganization = document.createElement('h3');
         expTitleAndOrganization.innerHTML = `${exp.com_title || ""} - ${exp.com_organization || ""}`;
         expTitleAndOrganization.classList.add('exp-title-organization');
@@ -326,13 +325,12 @@ const showAchiData = (achievements, container) => {
         return;
     }
 
-    container.innerHTML = ""; // Clear the container
+    container.innerHTML = `<h2 class="section-title"> Achievements</h2>`; // Clear the container
 
     achievements.forEach(achi => {
         let achiItem = document.createElement("div");
         achiItem.classList.add("achievement-item");
-        achiItem.innerHTML=`<h2 class="section-title"> Achievements</h2>
-`
+
 
         let achiTitle = document.createElement("h3");
         achiTitle.innerHTML = achi.achieve_title || "";
@@ -356,13 +354,11 @@ const showPorData = (projects, container) => {
         return;
     }
 
-    container.innerHTML = ""; // Clear the container
+    container.innerHTML=`<h2 class="section-title"> Academic Projects</h2>`; // Clear the container
 
     projects.forEach(pro => {
         let proItem = document.createElement('div');
         proItem.classList.add('pro-item');
-        proItem.innerHTML=`<h2 class="section-title"> Academic Projects</h2>
-`
 
         let proT = document.createElement('h3');
         proT.innerHTML = `${pro.proj_title || ""}`;
@@ -391,13 +387,11 @@ const showEducData = (educations, container) => {
         return;
     }
 
-    container.innerHTML = ""; // Clear the container first
+    container.innerHTML = `<h2 class="section-title"> Education and Qualifications</h2>`; // Clear the container first
 
     educations.forEach(educ => {
         let educItem = document.createElement('div');
         educItem.classList.add('education-item');
-        educItem.innerHTML=`<h2 class="section-title"> Education and Qualifications</h2>
-`
 
         let educTitleAndSchool = document.createElement('h3');
         educTitleAndSchool.innerHTML = `${educ.edu_degree || ""} - ${educ.edu_school || ""}`;
@@ -432,14 +426,11 @@ const showLang = (languages, container) => {
         return;
     }
 
-    container.innerHTML = ""; // Clear the container first
+    container.innerHTML = `<h2 class="section-title"> Languages</h2>`; // Clear the container first
 
     languages.forEach(lang => {
         let langItem = document.createElement("div");
         langItem.classList.add("langItem");
-        langItem.innerHTML=`<h2 class="section-title"> Languages</h2>
-`
-
         let langcont = document.createElement('span');
         langcont.innerHTML = `<strong>${lang.languaget}:</strong>  ${lang.languagel || ""}`;
         langcont.classList.add("langcont");
@@ -457,13 +448,12 @@ const showSkillData = (skills, container) => {
         return; 
     }
 
-    container.innerHTML = '';
+    container.innerHTML = `<h2 class="section-title"> Technical Skills</h2>`;
 
     skills.forEach(skil => {
         if (skil.skillt.trim() || skil.skilld.trim()) {
             let skillItem = document.createElement('div');
             skillItem.classList.add("skillItem");
-            skillItem.innerHTML=`<h2 class="section-title"> Technical Skills</h2>`
 
             let skillcont = document.createElement('span');
             skillcont.innerHTML = `<strong>${skil.skillt}:</strong>  ${skil.skilld}`;
